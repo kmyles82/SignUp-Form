@@ -69,6 +69,8 @@
 </template>
 
 <script>
+import axios from '../../axios-auth'
+
   export default {
     data () {
       return {
@@ -80,6 +82,9 @@
         hobbyInputs: [], 
         terms: false
       }
+    },
+    mount(){
+
     },
     methods: {
       onAddHobby () {
@@ -103,6 +108,13 @@
           terms: this.terms
         }
         console.log(formData)
+        axios.post('/users.json',  formData)
+        .then(response => {
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error)
+        })
       }
     }
   }
