@@ -69,8 +69,6 @@
 </template>
 
 <script>
-import axios from '../../axios-auth'
-
   export default {
     data () {
       return {
@@ -79,12 +77,9 @@ import axios from '../../axios-auth'
         password: '',
         confirmPassword: '',
         country: 'usa',
-        hobbyInputs: [], 
+        hobbyInputs: [],
         terms: false
       }
-    },
-    mount(){
-
     },
     methods: {
       onAddHobby () {
@@ -108,17 +103,7 @@ import axios from '../../axios-auth'
           terms: this.terms
         }
         console.log(formData)
-        axios.post('/accounts:signUp?key=AIzaSyC4HcfsXY4dgobvOBBv7JGZHCkHjYtqk-8',  {
-          email: formData.email,
-          password: formData.password,
-          returnSecureToken: true
-        })
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error)
-        })
+        this.$store.dispatch('signup', formData)
       }
     }
   }
