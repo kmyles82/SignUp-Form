@@ -7,7 +7,9 @@
           <input
                   type="email"
                   id="email"
-                  v-model="email">
+                  v-model="email"
+                  @input="$v.email.$touch()">
+                  <div>{{$v}}</div>
         </div>
         <div class="input">
           <label for="age">Your Age</label>
@@ -23,6 +25,7 @@
                   id="password"
                   v-model="password">
         </div>
+        
         <div class="input">
           <label for="confirm-password">Confirm Password</label>
           <input
@@ -69,6 +72,8 @@
 </template>
 
 <script>
+import { required, email } from 'vuelidate/lib/validators'
+
   export default {
     data () {
       return {
@@ -80,6 +85,24 @@
         hobbyInputs: [],
         terms: false
       }
+    },
+    validations:{
+      email: {
+        required,
+        email
+      },
+      // age: {
+
+      // },
+      // password: {
+
+      // },
+      // confirmPassword:{
+
+      // },
+      // terms:{
+
+      // }
     },
     methods: {
       onAddHobby () {
