@@ -111,7 +111,7 @@ import axios from 'axios'
           return axios.get('/users.json?orderBy="email"&equalTo="' + val + '"')
           .then(res => {
             console.log(res)
-            return false
+            return Object.keys(res.data).length === 0
           })
             
           
