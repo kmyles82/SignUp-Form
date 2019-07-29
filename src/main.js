@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Vuelidate from 'vuelidate'
 
 import axios from 'axios'
 
 import router from './router'
 import store from './store'
+
+Vue.use(Vuelidate)
 
 //setup global config
 axios.defaults.baseURL = 'https://signup-form-d2d77.firebaseio.com';
@@ -13,19 +16,19 @@ axios.defaults.baseURL = 'https://signup-form-d2d77.firebaseio.com';
 axios.defaults.headers.get['Accept'] = 'application/json';
 
 //working with interceptors
-// const reqInterceptors = axios.interceptors.request.use(config => {
-//   console.log('request interceptors', config)
-//   return config
-// })
+const reqInterceptors = axios.interceptors.request.use(config => {
+  console.log('request interceptors', config)
+  return config
+})
 
-// const resInterceptors = axios.interceptors.response.use(res => {
-//   console.log('response interceptors', res)
-//   return res
-// })
+const resInterceptors = axios.interceptors.response.use(res => {
+  console.log('response interceptors', res)
+  return res
+})
 
 //remove interceptors
-// axios.interceptors.request.eject(reqInterceptors)
-// axios.interceptors.response.eject(resInterceptors)
+axios.interceptors.request.eject(reqInterceptors)
+axios.interceptors.response.eject(resInterceptors)
 
 
 
