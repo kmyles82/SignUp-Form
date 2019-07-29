@@ -19,6 +19,7 @@
                   id="age"
                   v-model.number="age"
                   @blur="$v.age.$touch()">
+          <p v-if="!$v.age.minVal">You have to be at least {{$v.age.$params.minVal.min}} years old</p>
         </div>
         <div class="input">
           <label for="password">Password</label>
